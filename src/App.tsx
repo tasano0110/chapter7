@@ -1,26 +1,36 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import BlogApp from "./BlogApp";
+import PostDetail from "./PostDetail";
+import Contact from "./Contact";
 
-function App() {
+function Header(): React.JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <header className="bg-gray-600 text-white py-10 px-5">
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold text-white no-underline">
+          Blog
+        </Link>
+        <Link
+          to="/contact"
+          className="text-white text-xl hover:text-gray-300 transition-colors duration-200 no-underline"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          お問い合わせ
+        </Link>
+      </div>
+    </header>
   );
 }
 
-export default App;
+export default function App(): React.JSX.Element {
+  return (
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<BlogApp />} />
+        <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
+}
