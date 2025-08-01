@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-interface Post {
-  id: number;
-  title: string;
-  createdAt: string;
-  categories: string[];
-  content: string;
-}
+import { Post } from "./types/Post";
 
 type ApiResponse = {
   posts: Post[];
